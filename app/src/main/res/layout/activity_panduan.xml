@@ -1,0 +1,135 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wallpaper"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginTop="10sp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/panduan_pengaduan"
+            android:textAlignment="center"
+            android:layout_marginBottom="10sp"
+            android:textStyle="bold"
+            android:textColor="@color/input_login"
+            android:shadowColor="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5sp"
+            android:text="@string/n1"
+            android:textStyle="bold"
+            android:textColor="#000110"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="10sp"
+            android:background="@drawable/oval"
+            android:editable="false"
+            android:padding="5sp"
+            android:text="@string/co1"
+            android:textSize="12sp"
+            android:maxLines="1"
+            tools:ignore="TextFields" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/n2"
+            android:textSize="12sp"
+            android:paddingBottom="5sp"
+            android:textColor="#000110"/>
+
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/oval"
+            android:padding="5sp"
+            android:textSize="12sp"
+            android:text="@string/co2"
+            android:editable="false"
+            android:layout_marginBottom="10sp"
+            />
+
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/n3"
+            android:textSize="12sp"
+            android:paddingBottom="5sp"
+            android:textColor="#000110"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/oval"
+            android:padding="5sp"
+            android:textSize="12sp"
+            android:text="@string/co3"
+            android:editable="false"
+            android:layout_marginBottom="10sp"
+            />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/n4"
+            android:paddingBottom="5sp"
+            android:textSize="12sp"
+            android:textColor="#000110"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/oval"
+            android:padding="5sp"
+            android:textSize="12sp"
+            android:text="@string/co4"
+            android:editable="false"
+            android:layout_marginBottom="10sp"
+            />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/n5"
+            android:paddingBottom="5sp"
+            android:textSize="12sp"
+            android:textColor="#000110"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/oval"
+            android:padding="5sp"
+            android:textSize="12sp"
+            android:text="@string/co5"
+            android:editable="false"
+
+            tools:ignore="TextFields" />
+
+    </LinearLayout>
+
+</LinearLayout>

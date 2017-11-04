@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black"
+            android:title="@string/nav_home" />
+        <item
+            android:id="@+id/nav_show_complaint"
+            android:icon="@drawable/ic_contact_pengaduan"
+            android:title="@string/nav_show_complaint_guide" />
+        <item
+            android:id="@+id/nav_form"
+            android:icon="@drawable/ic_formulir_pengaduan"
+            android:title="@string/nav_form" />
+        <item
+            android:id="@+id/nav_help_guide"
+            android:icon="@drawable/ic_panduan"
+            android:title="@string/nav_help_guide" />
+
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/ic_expand_more_black_18dp"
+            android:title="@string/nav_about_us" />
+    </group>
+
+
+</menu>

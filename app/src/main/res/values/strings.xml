@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">Lumajang</string>
+
+    <!--Function for login & registration-->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Full Name</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="link_to_register">Not a member?</string>
+    <string name="link_to_login">Already a Account?</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Full Name</string>
+
+    <!--Navigation Drawer menu label-->
+    <string name="nav_home">Dashboard</string>
+    <string name="nav_show_complaint_guide">Lihat Pengaduan</string>
+    <string name="nav_form">Formulir Pengaduan</string>
+    <string name="nav_help_guide">Panduan Pengaduan</string>
+    <string name="nav_notifications">Notifications</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_about_us">Tentang Kami</string>
+    <string name="nav_menu">Menu</string>
+
+    <!--Toolbar titles when navigation menu item is selected-->
+    <string-array name="nav_item_activity_titles">
+        <item>Dashboard</item>
+        <item>Lihat Pengaduan</item>
+        <item>Data Formulir</item>
+        <item>Panduan Pengaduan</item>
+        <item>Notification</item>
+        <item>Settings</item>
+        <item>Tentang Kami</item>
+        <item>Privacy Policy</item>
+        <item>Menu </item>
+    </string-array>
+
+    <!--Title another-->
+    <string name="activity_title_about_us">Tentang Kami</string>
+    <string name="activity_title_privacy_policy">Privacy</string>
+    <string name="activity_title_Menu">Menu Slide Image</string>
+
+    <string name="refresh">Refresh Data</string>
+    <string name="simpan">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="action_logout">Logout</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title_form">Formulir Pengaduan</string>
+
+    <!--value form guide-->
+    <string name="nama_pengadu">Nama Lengkap</string>
+    <string name="no_ktp">No. KTP</string>
+    <string name="kec">Kecamatan</string>
+    <string name="kel">Kelurahan</string>
+    <string name="rt">RT</string>
+    <string name="rw">RW</string>
+    <string name="alamat">Alamat Lengkap</string>
+    <string name="kantor">Kantor Tujuan SKPD</string>
+    <string name="email">Email</string>
+    <string name="pengaduan_anda">Isikan Keluhan anda</string>
+
+    <string name="n1">Point 1 </string>
+    <string name="n2">Point 2</string>
+    <string name="n3">Point 3</string>
+    <string name="n4">Point 4</string>
+    <string name="n5">Point 5</string>
+
+    <string name="co1">Siapkan Data yang akan anda adukan.</string>
+    <string name="co2">Gunakan KTP anda yang masih aktif dan valid.</string>
+    <string name="co3">Lengkapi Form isian pengaduan sesuai data yang dibutuhkan dan data identitas harus sesuai dengan data pada KTP anda yang masih aktif.</string>
+    <string name="co4">Apabila data-data yang dicantumkan tidak lengkap, tidak jelas atau tidak valid, maka pengaduan tidak akan dijawab.</string>
+    <string name="co5">Pengaduan yang telah dikirimkan akan segera di proses.</string>
+
+    <item name="visible" type="id" />
+    <item name="masked" type="id" />
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="panduan_pengaduan">PANDUAN PENGADUAN</string>
+    <string name="detail_pengaduan">Detail Data Pengaduan</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+</resources>

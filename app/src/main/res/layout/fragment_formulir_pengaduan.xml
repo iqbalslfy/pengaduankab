@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/wallpaper"
+    android:id="@+id/formulir"
+    >
+
+<ScrollView
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/wallpaper"
+    android:orientation="vertical"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:padding="5dp">
+    <EditText
+        android:id="@+id/nama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/oval"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="@string/nama_pengadu"
+        android:inputType="textCapWords"
+        android:padding="7dp"
+        android:textColor="@color/input_login" />
+
+    <EditText
+        android:id="@+id/no_ktp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:background="@drawable/oval"
+        android:hint="@string/no_ktp"
+        android:inputType="numberDecimal"
+        android:padding="7dp"
+        android:textColor="@color/input_login"
+        android:maxLength="16"
+        android:layout_below="@+id/nama"/>
+
+    <Spinner
+        android:id="@+id/kecamatan"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/oval"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:textColor="@color/input_login"
+        android:layout_below="@+id/no_ktp"/>
+
+    <Spinner
+        android:id="@+id/kelurahan"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/oval"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:textColor="@color/input_login"
+        android:layout_below="@+id/kecamatan"/>
+
+    <EditText
+        android:id="@+id/rt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="4"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/oval"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="@string/rw"
+        android:inputType="number"
+        android:padding="7dp"
+        android:textColor="@color/input_login"
+        android:layout_below="@+id/kelurahan"/>
+
+    <EditText
+        android:id="@+id/rw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="4"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/oval"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="@string/rt"
+        android:inputType="number"
+        android:padding="7dp"
+        android:textColor="@color/input_login"
+       android:layout_below="@+id/rt"/>
+
+    <EditText
+        android:id="@+id/alamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:background="@drawable/oval"
+        android:hint="@string/alamat"
+        android:inputType="textCapWords"
+        android:padding="7dp"
+        android:textColor="@color/input_login"
+        android:layout_below="@+id/rw"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:background="@drawable/oval"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:padding="7dp"
+        android:textColor="@color/input_login"
+        android:layout_below="@id/alamat"/>
+
+    <Spinner
+        android:id="@+id/skpd"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="100"
+        android:background="@drawable/oval"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:textColor="@color/input_login"
+        android:layout_below="@id/email"/>
+
+    <EditText
+        android:id="@+id/isi_pengaduan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/oval"
+        android:hint="@string/pengaduan_anda"
+        android:padding="7dp"
+        android:textColor="@color/input_login"
+        android:layout_below="@+id/skpd"/>
+
+    <LinearLayout
+        android:id="@+id/frameImage"
+        android:orientation="vertical"
+        android:layout_below="@+id/isi_pengaduan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/oval"
+            >
+            <TextView
+                android:id="@+id/cameratext"
+                android:text="Ambil Gambar :"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                />
+
+            <ImageView
+                android:id="@+id/imagePengaduan"
+                android:layout_width="150sp"
+                android:layout_height="250sp"
+                android:layout_below="@+id/cameratext"
+                />
+
+            <ImageButton
+                android:onClick="launchClick"
+                android:id="@+id/btnCamera"
+                android:background="@drawable/ripple_effect"
+                android:src="@drawable/ic_camera"
+                android:layout_marginLeft="10sp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/cameratext"
+                android:layout_toEndOf="@+id/imagePengaduan"
+                android:visibility="gone"/>
+
+            <ImageButton
+                android:id="@+id/btnGalery"
+                android:background="@drawable/ripple_effect"
+                android:src="@drawable/ic_galery"
+                android:layout_marginLeft="10sp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/btnCamera"
+                android:layout_toEndOf="@+id/imagePengaduan"
+                android:layout_marginTop="13dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/frameImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple_effect"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            />
+    </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>
