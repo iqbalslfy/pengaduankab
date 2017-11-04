@@ -306,7 +306,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         if (view == fab){
-            startActivity(new Intent(DashboardActivity.this, FormulirActivity.class));
+            startActivity(new Intent(DashboardActivity.this, RevisiActivity.class));
             drawer.closeDrawers();
         }
     }

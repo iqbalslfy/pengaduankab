@@ -10,8 +10,9 @@
     <RelativeLayout
         android:id="@+id/layout_top"
         android:layout_width="match_parent"
-        android:layout_height="140dp">
+        android:layout_height="150dp">
 
+        //image slider
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -22,14 +23,12 @@
                 android:layout_height="wrap_content" />
 
         </FrameLayout>
-
+        //background
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_indicator"/>
-
-
-
+        //dots
         <LinearLayout
             android:id="@+id/pagesContainer"
             android:layout_width="match_parent"
@@ -41,8 +40,22 @@
             android:orientation="horizontal" />
 
     </RelativeLayout>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_top"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rc_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
-    <FrameLayout
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v7.widget.CardView>
+    <LinearLayout
+        android:visibility="gone"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
@@ -54,8 +67,12 @@
             android:layout_height="360sp"
             android:layout_gravity="bottom"
             android:longClickable="true"
-            android:padding="5sp" />
-    </FrameLayout>
+            android:padding="5sp"
+            android:visibility="gone"
+            />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

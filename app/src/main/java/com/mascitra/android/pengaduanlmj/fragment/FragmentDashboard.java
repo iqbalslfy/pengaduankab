@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.mascitra.android.pengaduanlmj.activity.DetailBiodataActivity;
 import com.mascitra.android.pengaduanlmj.activity.DetailPengaduanActivity;
 import com.mascitra.android.pengaduanlmj.adapter.Data;
 import com.mascitra.android.pengaduanlmj._sliders.SliderPagerAdapter;
+import com.mascitra.android.pengaduanlmj.adapter.DataPengaduan;
 import com.mascitra.android.pengaduanlmj.config.RequestHandler;
 import com.mascitra.android.pengaduanlmj.config.SettingDatabase;
 import com.mascitra.android.pengaduanlmj._sliders.FragmentSlider;
@@ -40,6 +42,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
 /**
  * Created by SONY on 28/08/2017.
  */
@@ -49,7 +54,8 @@ public class FragmentDashboard extends Fragment {
 
     private ListView listView;
     private String JSON_STRING;
-
+    private RecyclerView recyclerView;
+    List<DataPengaduan> data_list;
 
     List<Data> itemList = new ArrayList<Data>();
     AlertDialog.Builder dialog;
@@ -79,6 +85,9 @@ public class FragmentDashboard extends Fragment {
 
         Refreshlist();
 
+        recyclerView = view.findViewById(R.id.rc_data);
+        data_list = new ArrayList<>();
+        load_data(0);
 
         sliderView = view.findViewById(R.id.sliderView);
         mLinearLayout = view.findViewById(R.id.pagesContainer);
@@ -88,6 +97,25 @@ public class FragmentDashboard extends Fragment {
 
         return view;
 
+    }
+
+    private void load_data(int id) {
+        AsyncTask<Integer,Void,Void> task = new AsyncTask<Integer, Void, Void>() {
+            @Override
+            protected Void doInBackground(Integer... params) {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url("http://demo.pertaminapontianak.com/view.php")
+                        .build();
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+            }
+        };
+        task.execute();
     }
 
 

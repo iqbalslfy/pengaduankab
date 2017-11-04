@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/ic_launcer"/>
+
+        <TextView
+            android:id="@+id/ktp_id"
+            android:layout_toRightOf="@+id/imageList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="018263871624"
+            android:textSize="17sp"
+            />
+
+        <TextView
+            android:id="@+id/name_ktp"
+            android:layout_toRightOf="@+id/imageList"
+            android:layout_below="@+id/ktp_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nama lenglap"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/jam"
+            android:gravity="right"
+            android:layout_toRightOf="@+id/imageList"
+            android:layout_below="@+id/name_ktp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/komentar"
+            android:layout_toRightOf="@+id/imageList"
+            android:layout_below="@id/jam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Komentar Anda"
+            android:maxLength="30"/>
+
+        <TextView
+            android:id="@+id/url"
+            android:layout_toRightOf="@+id/imageList"
+            android:layout_below="@id/komentar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Komentar Anda"
+            android:paddingBottom="10sp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

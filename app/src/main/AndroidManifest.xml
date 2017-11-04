@@ -34,7 +34,7 @@
         <activity android:name=".activity.FormulirActivity" />
         <activity android:name=".activity.LihatPengaduanActivity" />
         <activity android:name=".activity.PanduanActivity" />
-
+        <activity android:name=".activity.RevisiActivity" />
 
     </application>
 
