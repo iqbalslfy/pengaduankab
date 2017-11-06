@@ -16,6 +16,21 @@ import java.util.List;
 /**
  * Created by filipp on 9/16/2016.
  */
+
+class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    public ImageView imgPengaduan;
+
+
+    public RecyclerViewHolde(View itemView) {
+        super(itemView);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+}
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private Context context;

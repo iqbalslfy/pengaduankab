@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -62,19 +63,15 @@ public class FragmentDashboard extends Fragment {
     List<DataPengaduan> data_list;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
-    private CustomAdapter adapter;
+    private CustomAdapter adapterCard;
 
-    List<Data> itemList = new ArrayList<Data>();
-    AlertDialog.Builder dialog;
-    private static final String imageURL = "http://192.168.1.31/pelayanan/images/5heq3kywa59zkqtrvnbj.png";
     private SliderPagerAdapter mAdapter;
     private SliderIndicator mIndicator;
 
     private SliderView sliderView;
     private LinearLayout mLinearLayout;
-    private ImageView imgaduan;
-
-    private TextView urlimages;
+    ImageView imgaduan;
+    TextView urlimages;
 
     public FragmentDashboard(){
 
@@ -99,8 +96,8 @@ public class FragmentDashboard extends Fragment {
         gridLayoutManager = new GridLayoutManager(getActivity(),2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        adapter = new CustomAdapter(getActivity(),data_list);
-        recyclerView.setAdapter(adapter);
+        adapterCard = new CustomAdapter(getActivity(),data_list);
+        recyclerView.setAdapter(adapterCard);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -166,7 +163,7 @@ public class FragmentDashboard extends Fragment {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                adapter.notifyDataSetChanged();
+                adapterCard.notifyDataSetChanged();
             }
         };
 
