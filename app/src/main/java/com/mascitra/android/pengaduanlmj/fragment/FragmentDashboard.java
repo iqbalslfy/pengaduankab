@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.mascitra.android.pengaduanlmj.R;
 
 import com.mascitra.android.pengaduanlmj.activity.DetailBiodataActivity;
 import com.mascitra.android.pengaduanlmj.activity.DetailPengaduanActivity;
+import com.mascitra.android.pengaduanlmj.adapter.CustomAdapter;
 import com.mascitra.android.pengaduanlmj.adapter.Data;
 import com.mascitra.android.pengaduanlmj._sliders.SliderPagerAdapter;
 import com.mascitra.android.pengaduanlmj.adapter.DataPengaduan;
@@ -38,12 +40,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by SONY on 28/08/2017.
@@ -54,8 +58,11 @@ public class FragmentDashboard extends Fragment {
 
     private ListView listView;
     private String JSON_STRING;
-    private RecyclerView recyclerView;
+
     List<DataPengaduan> data_list;
+    private RecyclerView recyclerView;
+    private GridLayoutManager gridLayoutManager;
+    private CustomAdapter adapter;
 
     List<Data> itemList = new ArrayList<Data>();
     AlertDialog.Builder dialog;
@@ -89,6 +96,23 @@ public class FragmentDashboard extends Fragment {
         data_list = new ArrayList<>();
         load_data(0);
 
+        gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        adapter = new CustomAdapter(getActivity(),data_list);
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if(gridLayoutManager.findLastCompletelyVisibleItemPosition() == data_list.size()-1){
+                    load_data(data_list.get(data_list.size()-1).getId());
+                }
+
+            }
+        });
+
         sliderView = view.findViewById(R.id.sliderView);
         mLinearLayout = view.findViewById(R.id.pagesContainer);
 
@@ -99,23 +123,54 @@ public class FragmentDashboard extends Fragment {
 
     }
 
-    private void load_data(int id) {
+    private void load_data(final int id) {
         AsyncTask<Integer,Void,Void> task = new AsyncTask<Integer, Void, Void>() {
             @Override
-            protected Void doInBackground(Integer... params) {
+            protected Void doInBackground(Integer... integers) {
+
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://demo.pertaminapontianak.com/view.php")
+                        .url("http://192.168.1.8/test/script.php?id="+integers[0])
                         .build();
+                try {
+                    Response response = client.newCall(request).execute();
+
+                    JSONArray array = new JSONArray(response.body().string());
+
+                    for (int i=0; i<array.length(); i++){
+
+                        JSONObject object = array.getJSONObject(i);
+
+                        DataPengaduan data = new DataPengaduan(
+                                object.getInt("id"),
+                                object.getString("image"),
+                                object.getString("no_ktp"),
+                                object.getString("nama"),
+                                object.getString("waktu"),
+                                object.getString("peng_isi")
+
+                                );
+
+                        data_list.add(data);
+                    }
+
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    System.out.println("End of content");
+                }
                 return null;
             }
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+                adapter.notifyDataSetChanged();
             }
         };
-        task.execute();
+
+        task.execute(id);
     }
 
 

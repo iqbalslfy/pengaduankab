@@ -6,14 +6,14 @@ package com.mascitra.android.pengaduanlmj.adapter;
 
 public class DataPengaduan {
 
-    private int ImageID;
+    private int id;
     private String imageLink, nik, nama, tanggal, komentar;
 
     public DataPengaduan() {
     }
 
-    public DataPengaduan(int imageID, String imageLink, String nik, String nama, String tanggal, String komentar) {
-        ImageID = imageID;
+    public DataPengaduan(int id, String imageLink, String nik, String nama, String tanggal, String komentar) {
+        this.id = id;
         this.imageLink = imageLink;
         this.nik = nik;
         this.nama = nama;
@@ -21,12 +21,12 @@ public class DataPengaduan {
         this.komentar = komentar;
     }
 
-    public int getImageID() {
-        return ImageID;
+    public int getId() {
+        return id;
     }
 
-    public void setImageID(int imageID) {
-        ImageID = imageID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImageLink() {
