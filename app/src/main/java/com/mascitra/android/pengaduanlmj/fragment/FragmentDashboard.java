@@ -127,7 +127,7 @@ public class FragmentDashboard extends Fragment {
 
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://192.168.1.8/test/script.php?id="+integers[0])
+                        .url("http://demo.pertaminapontianak.com/view2.php?id="+integers[0])
                         .build();
                 try {
                     Response response = client.newCall(request).execute();

@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.mascitra.android.pengaduanlmj.Click.ItemClickListener;
 import com.mascitra.android.pengaduanlmj.R;
 
 import java.util.List;
@@ -20,18 +22,27 @@ import java.util.List;
 class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public ImageView imgPengaduan;
-
+    public TextView tvnama,tvnik,tvjam,tvkomentar;
+    private ItemClickListener itemClickListener;
 
     public RecyclerViewHolde(View itemView) {
         super(itemView);
+        imgPengaduan = itemView.findViewById(R.id.imageLists);
+        tvnama = itemView.findViewById(R.id.name_ktp);
+        tvnik = itemView.findViewById(R.id.ktp_id);
+        tvjam = itemView.findViewById(R.id.jam);
+        tvkomentar = itemView.findViewById(R.id.komentar);
+
+        itemView.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View v) {
-
+        itemClickListener.onClick(v, getAdapterPosition(), false);
     }
 }
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+    public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private Context context;
     private List<DataPengaduan> my_data;
@@ -49,16 +60,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         return new ViewHolder(itemView);
     }
 
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
 
             holder.nama.setText(my_data.get(position).getNama());
-        holder.nik.setText(my_data.get(position).getNik());
-        holder.tanggal.setText(my_data.get(position).getTanggal());
-        holder.description.setText(my_data.get(position).getKomentar());
-        Glide.with(context).load(my_data.get(position).getImageLink()).into(holder.imageView);
+            holder.nik.setText(my_data.get(position).getNik());
+            holder.tanggal.setText(my_data.get(position).getTanggal());
+            holder.description.setText(my_data.get(position).getKomentar());
+            Glide.with(context).load(my_data.get(position).getImageLink()).into(holder.imageView);
 
-    }
+            holder.setItemClickListener(new ItemClickListener() {
+                @Override
+                public void onClick(View view, int pos, boolean isLongClick) {
+                    Toast.makeText(context, "Item Klik : ", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
     @Override
     public int getItemCount() {
@@ -69,6 +86,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         public TextView nama,nik,tanggal,description;
         public ImageView imageView;
+        private ItemClickListener itemClickListener;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -77,6 +95,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             tanggal = itemView.findViewById(R.id.tvTanggal);
             description = itemView.findViewById(R.id.description);
             imageView = itemView.findViewById(R.id.image);
+        }
+
+
+        public void setItemClickListener(ItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
         }
     }
 }
