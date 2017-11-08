@@ -20,6 +20,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mascitra.android.pengaduanlmj.R;
 
@@ -110,6 +111,12 @@ public class FragmentDashboard extends Fragment {
             }
         });
 
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "asd", Toast.LENGTH_SHORT).show();
+            }
+        });
         sliderView = view.findViewById(R.id.sliderView);
         mLinearLayout = view.findViewById(R.id.pagesContainer);
 

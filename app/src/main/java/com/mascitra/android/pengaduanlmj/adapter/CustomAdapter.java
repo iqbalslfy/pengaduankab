@@ -1,7 +1,9 @@
 package com.mascitra.android.pengaduanlmj.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,8 @@ class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickL
     public TextView tvnama,tvnik,tvjam,tvkomentar;
     private ItemClickListener itemClickListener;
 
+    CardView cardView;
+
     public RecyclerViewHolde(View itemView) {
         super(itemView);
         imgPengaduan = itemView.findViewById(R.id.imageLists);
@@ -32,14 +36,13 @@ class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickL
         tvnik = itemView.findViewById(R.id.ktp_id);
         tvjam = itemView.findViewById(R.id.jam);
         tvkomentar = itemView.findViewById(R.id.komentar);
+        cardView = itemView.findViewById(R.id.card_view);
 
-        itemView.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
-        itemClickListener.onClick(v, getAdapterPosition(), false);
+
     }
 }
     public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
@@ -69,12 +72,6 @@ class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickL
             holder.description.setText(my_data.get(position).getKomentar());
             Glide.with(context).load(my_data.get(position).getImageLink()).into(holder.imageView);
 
-            holder.setItemClickListener(new ItemClickListener() {
-                @Override
-                public void onClick(View view, int pos, boolean isLongClick) {
-                    Toast.makeText(context, "Item Klik : ", Toast.LENGTH_SHORT).show();
-                }
-            });
         }
 
     @Override
@@ -86,7 +83,7 @@ class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickL
 
         public TextView nama,nik,tanggal,description;
         public ImageView imageView;
-        private ItemClickListener itemClickListener;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -95,11 +92,7 @@ class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickL
             tanggal = itemView.findViewById(R.id.tvTanggal);
             description = itemView.findViewById(R.id.description);
             imageView = itemView.findViewById(R.id.image);
-        }
 
-
-        public void setItemClickListener(ItemClickListener itemClickListener) {
-            this.itemClickListener = itemClickListener;
         }
     }
 }
