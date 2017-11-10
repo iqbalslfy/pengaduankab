@@ -1,19 +1,20 @@
 package com.mascitra.android.pengaduanlmj.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.mascitra.android.pengaduanlmj.Click.ItemClickListener;
+import com.mascitra.android.pengaduanlmj.Data.DataPengaduan;
 import com.mascitra.android.pengaduanlmj.R;
+import com.mascitra.android.pengaduanlmj.activity.DetailPengaduanActivity;
 
 import java.util.List;
 
@@ -21,36 +22,12 @@ import java.util.List;
  * Created by filipp on 9/16/2016.
  */
 
-class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-    public ImageView imgPengaduan;
-    public TextView tvnama,tvnik,tvjam,tvkomentar;
-    private ItemClickListener itemClickListener;
-
-    CardView cardView;
-
-    public RecyclerViewHolde(View itemView) {
-        super(itemView);
-        imgPengaduan = itemView.findViewById(R.id.imageLists);
-        tvnama = itemView.findViewById(R.id.name_ktp);
-        tvnik = itemView.findViewById(R.id.ktp_id);
-        tvjam = itemView.findViewById(R.id.jam);
-        tvkomentar = itemView.findViewById(R.id.komentar);
-        cardView = itemView.findViewById(R.id.card_view);
-
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-}
-    public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+    public class DataDashboardAdapter extends RecyclerView.Adapter<DataDashboardAdapter.ViewHolder> {
 
     private Context context;
     private List<DataPengaduan> my_data;
 
-    public CustomAdapter(Context context, List<DataPengaduan> my_data) {
+    public DataDashboardAdapter(Context context, List<DataPengaduan> my_data) {
         this.context = context;
         this.my_data = my_data;
     }
@@ -64,13 +41,24 @@ class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickL
     }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
 
             holder.nama.setText(my_data.get(position).getNama());
             holder.nik.setText(my_data.get(position).getNik());
             holder.tanggal.setText(my_data.get(position).getTanggal());
             holder.description.setText(my_data.get(position).getKomentar());
             Glide.with(context).load(my_data.get(position).getImageLink()).into(holder.imageView);
+
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        Intent intent = new Intent(context.getApplicationContext(), DetailPengaduanActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("ktp", holder.nik.getText().toString());
+                        intent.putExtras(b);
+                        context.startActivity(intent);
+                }
+            });
 
         }
 
@@ -83,7 +71,7 @@ class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickL
 
         public TextView nama,nik,tanggal,description;
         public ImageView imageView;
-
+        public RelativeLayout layout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -92,7 +80,7 @@ class RecyclerViewHolde extends RecyclerView.ViewHolder implements View.OnClickL
             tanggal = itemView.findViewById(R.id.tvTanggal);
             description = itemView.findViewById(R.id.description);
             imageView = itemView.findViewById(R.id.image);
-
+            layout = itemView.findViewById(R.id.relatifLayout);
         }
     }
 }

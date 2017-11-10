@@ -16,7 +16,6 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.mascitra.android.pengaduanlmj.R;
-import com.mascitra.android.pengaduanlmj.adapter.Data;
 import com.mascitra.android.pengaduanlmj.config.RequestHandler;
 import com.mascitra.android.pengaduanlmj.config.SettingDatabase;
 
@@ -32,12 +31,9 @@ public class LihatPengaduanActivity extends AppCompatActivity {
 
     private ListView listView;
     private String JSON_STRING;
-    private static final String imageURL = "http://192.168.1.31/pelayanan/images/5heq3kywa59zkqtrvnbj.png";
-    private TextView uRL;
+    TextView uRL;
     ImageView imgaduan;
 
-    List<Data> itemList = new ArrayList<Data>();
-    AlertDialog.Builder dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

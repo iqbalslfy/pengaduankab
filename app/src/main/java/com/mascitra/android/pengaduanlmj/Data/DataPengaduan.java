@@ -1,4 +1,4 @@
-package com.mascitra.android.pengaduanlmj.adapter;
+package com.mascitra.android.pengaduanlmj.Data;
 
 /**
  * Created by SONY on 04/11/2017.

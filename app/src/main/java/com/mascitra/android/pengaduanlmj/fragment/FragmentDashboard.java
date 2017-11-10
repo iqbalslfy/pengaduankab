@@ -6,8 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,18 +22,15 @@ import android.widget.Toast;
 
 import com.mascitra.android.pengaduanlmj.R;
 
-import com.mascitra.android.pengaduanlmj.activity.DetailBiodataActivity;
 import com.mascitra.android.pengaduanlmj.activity.DetailPengaduanActivity;
-import com.mascitra.android.pengaduanlmj.adapter.CustomAdapter;
-import com.mascitra.android.pengaduanlmj.adapter.Data;
+import com.mascitra.android.pengaduanlmj.adapter.DataDashboardAdapter;
 import com.mascitra.android.pengaduanlmj._sliders.SliderPagerAdapter;
-import com.mascitra.android.pengaduanlmj.adapter.DataPengaduan;
+import com.mascitra.android.pengaduanlmj.Data.DataPengaduan;
 import com.mascitra.android.pengaduanlmj.config.RequestHandler;
 import com.mascitra.android.pengaduanlmj.config.SettingDatabase;
 import com.mascitra.android.pengaduanlmj._sliders.FragmentSlider;
 import com.mascitra.android.pengaduanlmj._sliders.SliderIndicator;
 import com.mascitra.android.pengaduanlmj._sliders.SliderView;
-import com.mascitra.android.pengaduanlmj.other.ImageList;
 
 
 import org.json.JSONArray;
@@ -64,7 +59,7 @@ public class FragmentDashboard extends Fragment {
     List<DataPengaduan> data_list;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
-    private CustomAdapter adapterCard;
+    private DataDashboardAdapter adapterCard;
 
     private SliderPagerAdapter mAdapter;
     private SliderIndicator mIndicator;
@@ -97,7 +92,7 @@ public class FragmentDashboard extends Fragment {
         gridLayoutManager = new GridLayoutManager(getActivity(),2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        adapterCard = new CustomAdapter(getActivity(),data_list);
+        adapterCard = new DataDashboardAdapter(getActivity(),data_list);
         recyclerView.setAdapter(adapterCard);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
