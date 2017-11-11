@@ -106,12 +106,6 @@ public class FragmentDashboard extends Fragment {
             }
         });
 
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "asd", Toast.LENGTH_SHORT).show();
-            }
-        });
         sliderView = view.findViewById(R.id.sliderView);
         mLinearLayout = view.findViewById(R.id.pagesContainer);
 

@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +17,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.mascitra.android.pengaduanlmj.Data.DataPengaduan;
 import com.mascitra.android.pengaduanlmj.R;
+import com.mascitra.android.pengaduanlmj.adapter.DataDashboardAdapter;
 import com.mascitra.android.pengaduanlmj.config.RequestHandler;
 import com.mascitra.android.pengaduanlmj.config.SettingDatabase;
 
@@ -23,29 +27,48 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class LihatPengaduanActivity extends AppCompatActivity {
 
-    private ListView listView;
-    private String JSON_STRING;
-    TextView uRL;
-    ImageView imgaduan;
+    List<DataPengaduan> data_list;
+    private RecyclerView recyclerView;
+    private GridLayoutManager gridLayoutManager;
+    private DataDashboardAdapter adapterCard;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lihat_pengaduan);
-        uRL = (TextView) findViewById(R.id.url);
-        listView = (ListView) findViewById(R.id.list);
+        recyclerView = (RecyclerView) findViewById(R.id.rc_list_pengaduan);
+        data_list = new ArrayList<>();
+        load_data(0);
 
-        getJSON();
+        gridLayoutManager = new GridLayoutManager(this,1);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
-        imgaduan = (ImageView) findViewById(R.id.imageList);
-        Refreshlist();
+        adapterCard = new DataDashboardAdapter(this,data_list);
+        recyclerView.setAdapter(adapterCard);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if(gridLayoutManager.findLastCompletelyVisibleItemPosition() == data_list.size()-1){
+                    load_data(data_list.get(data_list.size()-1).getId());
+                }
+
+            }
+        });
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Pengaduan Masyarakat");
@@ -63,92 +86,53 @@ public class LihatPengaduanActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void Refreshlist(){
+    private void load_data(final int id) {
+        AsyncTask<Integer,Void,Void> task = new AsyncTask<Integer, Void, Void>() {
+            @Override
+            protected Void doInBackground(Integer... integers) {
 
-        try {
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(final AdapterView<?> arg0, View view, final int pos, long l) {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url("http://demo.pertaminapontianak.com/view2.php?id="+integers[0])
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
 
-                    Intent intent = new Intent(getApplicationContext(), DetailPengaduanActivity.class);
-                    AdapterView<?> adapterView = null;
-                    HashMap<String,String> map =(HashMap)arg0.getItemAtPosition(pos);
-                    String empId = map.get(SettingDatabase.TAG_KTP).toString();
-                    intent.putExtra(SettingDatabase.TAG_KTP,empId);
-                    startActivity(intent);
+                    JSONArray array = new JSONArray(response.body().string());
 
+                    for (int i=0; i<array.length(); i++){
+
+                        JSONObject object = array.getJSONObject(i);
+
+                        DataPengaduan data = new DataPengaduan(
+                                object.getInt("id"),
+                                object.getString("image"),
+                                object.getString("no_ktp"),
+                                object.getString("nama"),
+                                object.getString("waktu"),
+                                object.getString("peng_isi")
+
+                        );
+
+                        data_list.add(data);
+                    }
+
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    System.out.println("End of content");
                 }
-            });
-        }catch (Exception e){
-            e.getMessage();
-        }
-    }
-
-    public void showEmployee(){
-        JSONObject jsonObject = null;
-        ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
-        try {
-            jsonObject = new JSONObject(JSON_STRING);
-            JSONArray result = jsonObject.getJSONArray(SettingDatabase.TAG_JSON_ARRAY);
-
-            for(int i = 0; i<result.length(); i++){
-                JSONObject jo = result.getJSONObject(i);
-                String id_ktp = jo.getString(SettingDatabase.TAG_KTP);
-                String name = jo.getString(SettingDatabase.TAG_NAMA);
-                String waktu = jo.getString(SettingDatabase.TAG_WAKTU);
-                String isi = jo.getString(SettingDatabase.TAG_ISI);
-
-                HashMap<String,String> employees = new HashMap<>();
-                employees.put(SettingDatabase.TAG_KTP,id_ktp);
-                employees.put(SettingDatabase.TAG_NAMA,name);
-                employees.put(SettingDatabase.TAG_WAKTU, waktu);
-                employees.put(SettingDatabase.TAG_ISI, isi);
-
-                list.add(employees);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        ListAdapter adapter = new SimpleAdapter(
-                this, list, R.layout.list_item,
-                new String[]{SettingDatabase.TAG_KTP, SettingDatabase.TAG_NAMA, SettingDatabase.TAG_WAKTU, SettingDatabase.TAG_ISI},
-                new int[]{R.id.ktp_id, R.id.name_ktp, R.id.jam, R.id.komentar});
-
-
-        listView.setAdapter(adapter);
-    }
-
-    public void getJSON(){
-
-        class GetJSON extends AsyncTask<Void,Void,String> {
-
-            ProgressDialog loading;
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(LihatPengaduanActivity.this,"Mengambil Data","Mohon Tunggu...",false,false);
+                return null;
             }
 
             @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                JSON_STRING = s;
-                showEmployee();
+            protected void onPostExecute(Void aVoid) {
+                adapterCard.notifyDataSetChanged();
             }
+        };
 
-            @Override
-            protected String doInBackground(Void... params) {
-                RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequest(SettingDatabase.URL_GET_ALL);
-                return s;
-            }
-        }
-
-        GetJSON gj = new GetJSON();
-        gj.execute();
-
+        task.execute(id);
     }
 }
