@@ -43,7 +43,8 @@ public class FormulirActivity extends AppCompatActivity implements View.OnClickL
     String [] kelurahan = {"Pilih Kelurahan","Rogotrunan", "Ditrotunan"};
 
     ImageButton btnCamera, btnGalery;
-    private static final int PICT_IMAGE = 100;
+
+    private static final int PICT_IMAGE = 1337;
 
     int PICK_IMAGE_REQUEST = 1;
     Uri imageUri;
@@ -88,6 +89,7 @@ public class FormulirActivity extends AppCompatActivity implements View.OnClickL
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Data Pengaduan");
+
 
     }
 
@@ -159,8 +161,10 @@ public class FormulirActivity extends AppCompatActivity implements View.OnClickL
 
     public void takeImageFromCamera(View view) {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, 0);
+        startActivityForResult(cameraIntent, PICT_IMAGE);
     }
+
+
 
     public void takeImageFromGalery(View view){
         Intent intent = new Intent();
@@ -291,20 +295,12 @@ public class FormulirActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == PICT_IMAGE) {
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(thumbnail);
 
-                if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-                    Uri filePath = data.getData();
-                    try {
-                        //mengambil fambar dari Gallery
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                        // 512 adalah resolusi tertinggi setelah image di resize, bisa di ganti.
-                        setToImageView(getResizedBitmap(bitmap, 1024));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+        }
 
     }
 

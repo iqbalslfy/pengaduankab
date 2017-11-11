@@ -169,33 +169,35 @@
 
             <ImageView
                 android:id="@+id/imagePengaduan"
-                android:layout_width="150sp"
-                android:layout_height="250sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/cameratext"
                 />
 
             <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:onClick="launchClick"
                 android:id="@+id/btnCamera"
                 android:background="@drawable/ripple_effect"
                 android:src="@drawable/ic_camera"
-                android:layout_marginLeft="10sp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_below="@+id/cameratext"
-                android:layout_toEndOf="@+id/imagePengaduan"
-                android:visibility="gone"/>
+                android:layout_below="@+id/imagePengaduan"
+                android:layout_margin="5dp"
+                android:layout_centerVertical="true"
+                />
 
             <ImageButton
                 android:id="@+id/btnGalery"
                 android:background="@drawable/ripple_effect"
                 android:src="@drawable/ic_galery"
-                android:layout_marginLeft="10sp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_below="@+id/btnCamera"
-                android:layout_toEndOf="@+id/imagePengaduan"
-                android:layout_marginTop="13dp" />
+                android:layout_below="@+id/imagePengaduan"
+                android:layout_toRightOf="@+id/btnCamera"
+                android:layout_margin="5dp"
+                android:layout_centerVertical="true"
+                />
+
                 </RelativeLayout>
             </LinearLayout>
 
