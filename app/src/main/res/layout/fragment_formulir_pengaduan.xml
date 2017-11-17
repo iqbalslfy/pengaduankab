@@ -159,6 +159,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/oval"
             >
+
             <TextView
                 android:id="@+id/cameratext"
                 android:text="Ambil Gambar :"

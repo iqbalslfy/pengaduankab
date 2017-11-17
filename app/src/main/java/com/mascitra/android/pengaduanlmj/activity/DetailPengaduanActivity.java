@@ -23,11 +23,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DetailPengaduanActivity extends AppCompatActivity implements View.OnClickListener{
+
     private TextView people, ktpd, kepada,txtwaktu, isipengaduan, UrlImage, tanggapan, txtWaktuTanggapan;
     private String ktp_ids;
-    private ImageView imgaduan,peopleimg;
+    private ImageView imgaduan;
     private  String URL;
     private String tanggapantext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,6 @@ public class DetailPengaduanActivity extends AppCompatActivity implements View.O
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Detail Pengaduan");
-
 
 
         Intent intent = getIntent();
@@ -49,7 +50,6 @@ public class DetailPengaduanActivity extends AppCompatActivity implements View.O
         isipengaduan = (TextView) findViewById(R.id.textpengaduan);
         UrlImage = (TextView) findViewById(R.id.urlimages);
         imgaduan = (ImageView) findViewById(R.id.imageDetail);
-        peopleimg = (ImageView) findViewById(R.id.img_people);
         tanggapan = (TextView)findViewById(R.id.textTanggapan);
         txtWaktuTanggapan = (TextView) findViewById(R.id.txttgltanggapan);
 
@@ -60,7 +60,7 @@ public class DetailPengaduanActivity extends AppCompatActivity implements View.O
 //        }
 
         people.setOnClickListener(this);
-        peopleimg.setOnClickListener(this);
+        imgaduan.setOnClickListener(this);
 
         getData();
 
@@ -161,13 +161,12 @@ public class DetailPengaduanActivity extends AppCompatActivity implements View.O
             startActivity(intent);
         }
 
-        if (view == peopleimg) {
-            Intent intent = new Intent(getApplicationContext(), DetailBiodataActivity.class);
+        if (view == imgaduan){
+            Intent intent = new Intent(getApplicationContext(), ImageZoomActivity.class);
             Bundle b = new Bundle();
-            b.putString("ktp", ktpd.getText().toString());
+            b.putString("url", UrlImage.getText().toString());
             intent.putExtras(b);
             startActivity(intent);
-
         }
     }
 }

@@ -94,7 +94,7 @@
                     <ImageView
                         android:id="@+id/imageDetail"
                         android:layout_width="match_parent"
-                        android:layout_height="158dp"
+                        android:layout_height="160dp"
                         android:src="@mipmap/ic_launcher"
                         android:scaleType="centerCrop"/>
 
@@ -105,68 +105,45 @@
                         android:orientation="vertical"
                         android:padding="12dp">
 
-                        <ImageView
-                            android:id="@+id/img_people"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_account" />
+
                         <TextView
                             android:id="@+id/textpeople"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/img_people"
-                            android:textAlignment="center"
                             android:text="Muhammad Iqbal Maulana"
                             android:textSize="15dp"
                             android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/img_kantor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/textpeople"
-                            android:src="@drawable/ic_work" />
 
 
                         <TextView
                             android:id="@+id/textkepada"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/img_kantor"
                             android:text="Dinas Informasi dan Komunikasi"
-                            android:textAlignment="center"
                             android:textSize="15dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:layout_below="@+id/textpeople"/>
 
-                        <ImageView
-                            android:id="@+id/img_time"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/textkepada"
-                            android:src="@drawable/ic_time" />
                         <TextView
                             android:id="@+id/textwaktu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/img_time"
+                            android:layout_below="@id/textkepada"
                             android:text="yyyy/mm/dd, 00:00:00"
-                            android:textAlignment="center"
                             android:textSize="14dp"
                             android:textStyle="bold" />
-
-
 
                         <TextView
                             android:id="@+id/no_ktpd"
                             android:layout_width="match_parent"
                             android:layout_height="32sp"
-                            android:layout_below="@id/img_time"
                             android:paddingLeft="47sp"
                             android:text="01234567891011"
                             android:textSize="15dp"
                             android:textStyle="bold"
                             android:visibility="gone"
                             />
+
                     </RelativeLayout>
 
                     <TextView
